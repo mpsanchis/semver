@@ -31,6 +31,7 @@ export default async function version(
   const {
     push,
     remote,
+    skip,
     dryRun,
     trackDeps,
     baseBranch,
@@ -52,6 +53,10 @@ export default async function version(
   } = _normalizeOptions(options);
   const workspaceRoot = context.root;
   const projectName = context.projectName as string;
+
+  if (options.skip) {
+    return { success: true };
+  }
 
   let dependencyRoots: DependencyRoot[] = [];
   try {
@@ -121,6 +126,7 @@ export default async function version(
       const options: CommonVersionOptions = {
         newVersion: version,
         tag,
+        skip,
         dryRun,
         trackDeps,
         noVerify,
@@ -226,6 +232,7 @@ function _normalizeOptions(options: VersionBuilderSchema) {
     push: options.push as boolean,
     remote: options.remote as string,
     dryRun: options.dryRun as boolean,
+    skip: options.dryRun as boolean,
     trackDeps: options.trackDeps as boolean,
     baseBranch: options.baseBranch as string,
     noVerify: options.noVerify as boolean,

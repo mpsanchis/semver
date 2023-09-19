@@ -25,6 +25,7 @@ export type Version =
 
 export interface CommonVersionOptions {
   tag: string;
+  skip: boolean;
   dryRun: boolean;
   trackDeps: boolean;
   newVersion: string;

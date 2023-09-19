@@ -15,6 +15,7 @@ export type Preset =
   | ({ name: string } & ConventionalChangelogConfigSpec.Config);
 
 export interface VersionBuilderSchema {
+  skip?: boolean;
   dryRun?: boolean;
   noVerify?: boolean;
   push?: boolean;
